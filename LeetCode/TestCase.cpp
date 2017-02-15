@@ -9,7 +9,7 @@
 #include <algorithm>
 #include <ctime>
 
-//#include "104.hpp"
+#include "algorithms/104.hpp"
 
 int main(int argc, char **argv) {
 	/*
