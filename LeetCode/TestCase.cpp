@@ -9,7 +9,8 @@
 #include <algorithm>
 #include <ctime>
 
-#include "algorithms/104.hpp"
+//#include "algorithms/104.hpp"
+#include "for_loop_test.hpp"
 
 int main(int argc, char **argv) {
 	/*
@@ -29,6 +30,15 @@ int main(int argc, char **argv) {
 		end_clock = std::clock();
 	std::cout << "other = " << end_clock - start_clock << '\n';
 	*/
-	system("PAUSE");
+
+
+	Solution sol{};
+	sol.Test();
+
+	
+
+
+
+	
 	return 0;
 }

@@ -21,9 +21,15 @@
     <ClCompile Include="TestCase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="for_loop_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="algorithms\104.hpp">
+      <Filter>algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="for_loop_test.hpp">
       <Filter>algorithms</Filter>
     </ClInclude>
   </ItemGroup>
