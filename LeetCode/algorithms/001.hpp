@@ -6,15 +6,15 @@ public:
      std::vector<int> twoSum(std::vector<int>& nums, int target) {
         //O(n) algorithm
         auto n = nums.size();
-        std::unordered_map<int,decltype(n)> input;
-        for(int i=0; i <n; ++i ) input[nums[i]] = i;
+        std::unordered_map<int,decltype(n)> hash;
+        for(int i=0; i <n; ++i ) hash[nums[i]] = i;
         
         std::vector<int> output;
         output.reserve(2);
         for(auto num: nums){
-            if( (input[target - num]) && (target != 2* num) ){
-                output.push_back(input[num]);
-                output.push_back(input[target - num]);
+            if( (hash[target - num]) && (target != 2* num) ){
+                output.push_back(hash[num]);
+                output.push_back(hash[target - num]);
                 return output;
             }
         }
