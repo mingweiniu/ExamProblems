@@ -1,7 +1,11 @@
 #include "for_loop_test.hpp"
 
+template<T>
+void func(int i, T b) { ++i; b += i; }
+
 void Solution::Test()
 {
+	std::size_t b;
 	std::vector<int> x(2000000);
 	
 	for (auto i :x){ 
@@ -11,7 +15,7 @@ void Solution::Test()
 	auto start_clock = std::clock();
 	for (auto i = 0; i < x.size(); ++i){
 		++x[i];
-		++x[i];
+		b += x[i];
 	}
 	auto end_clock = std::clock();
 	std::cout << " for(int) " << end_clock - start_clock << '\n';
@@ -20,7 +24,7 @@ void Solution::Test()
 	start_clock = std::clock();
 	for (auto i:x){
 		++i;
-		++i;
+		b += i;
 	}
 	end_clock = std::clock();
 	std::cout << " for(auto i) " << end_clock - start_clock << '\n';
@@ -29,19 +33,27 @@ void Solution::Test()
 	start_clock = std::clock();
 	for (auto iter = x.begin(); iter != x.end(); ++iter){
 		++(*iter);
-		++(*iter);
+		b += (*iter);
 	}
 	end_clock = std::clock();
 	std::cout << " for(iter) " << end_clock - start_clock << '\n';
 	system("PAUSE");
 
 	start_clock = std::clock();
+	std::bind;
+	std::for_each(x.begin(), x.end(),);
+	end_clock = std::clock();
+	std::cout << " for_each(bind) " << end_clock - start_clock << '\n';
+	system("PAUSE");
+
+
+	start_clock = std::clock();
 	std::for_each(x.begin(), x.end(), [](auto i) {
 		++i;
-		++i;
+		b += i;
 	});
 	end_clock = std::clock();
-	std::cout << " for_each " << end_clock - start_clock << '\n';
+	std::cout << " for_each(lambda) " << end_clock - start_clock << '\n';
 	system("PAUSE");
 
 }

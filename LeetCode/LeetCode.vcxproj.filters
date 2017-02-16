@@ -32,5 +32,17 @@
     <ClInclude Include="for_loop_test.hpp">
       <Filter>algorithms</Filter>
     </ClInclude>
+    <ClInclude Include="algorithms\001.hpp">
+      <Filter>algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="algorithms\148.hpp">
+      <Filter>algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="algorithms\496.hpp">
+      <Filter>algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="algorithms\500.hpp">
+      <Filter>algorithms</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

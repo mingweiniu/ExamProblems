@@ -114,7 +114,11 @@
     <ClCompile Include="TestCase.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="algorithms\001.hpp" />
     <ClInclude Include="algorithms\104.hpp" />
+    <ClInclude Include="algorithms\148.hpp" />
+    <ClInclude Include="algorithms\496.hpp" />
+    <ClInclude Include="algorithms\500.hpp" />
     <ClInclude Include="for_loop_test.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
