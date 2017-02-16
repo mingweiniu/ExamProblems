@@ -1,7 +1,9 @@
 //1. Two Sum
+#include <unordered_map>
+#include <vector>
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
+     std::vector<int> twoSum(std::vector<int>& nums, int target) {
         //O(n) algorithm
         auto n = nums.size();
         std::unordered_map<int,decltype(n)> input;
