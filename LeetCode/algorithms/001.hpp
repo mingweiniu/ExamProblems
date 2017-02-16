@@ -10,6 +10,7 @@ public:
         for(int i=0; i <n; ++i ) input[nums[i]] = i;
         
         std::vector<int> output;
+        output.reserve(2);
         for(auto num: nums){
             if( (input[target - num]) && (target != 2* num) ){
                 output.push_back(input[num]);
