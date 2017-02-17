@@ -5,7 +5,7 @@ void func(int i, T b) { ++i; b += i; }
 
 void Solution::Test()
 {
-	std::size_t b;
+	std::size_t b = 3;
 	std::vector<int> x(2000000);
 	
 	for (auto i :x){ 
