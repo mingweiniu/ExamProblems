@@ -10,14 +10,7 @@
 
 class Solution {
 
-
 public:
 	void Test();
-
-
-
-
-
-
-
+	
 };

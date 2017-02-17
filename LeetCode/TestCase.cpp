@@ -9,13 +9,13 @@
 #include <algorithm>
 #include <ctime>
 
-#include "algorithms/148.hpp"
+#include "for_loop_test.hpp"
 
 
 int main(int argc, char **argv) {
 
 	Solution sol{};
-	//sol.Test();
+	sol.Test();
 		
 	return 0;
 }
