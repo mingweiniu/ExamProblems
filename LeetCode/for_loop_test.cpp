@@ -8,13 +8,13 @@ void Solution::Test()
 {
 	int b = 0;
 	std::vector<int> x(2000000);
-	
-	for (auto i :x){ 
-		i = std::rand(); 
+
+	for (auto i : x) {
+		i = std::rand();
 	}
 
 	auto start_clock = std::clock();
-	for (auto i = 0; i < x.size(); ++i){
+	for (auto i = 0; i < x.size(); ++i) {
 		++x[i];
 		b += x[i];
 	}
@@ -23,7 +23,7 @@ void Solution::Test()
 
 
 	start_clock = std::clock();
-	for (auto i:x){
+	for (auto i : x) {
 		++i;
 		b += i;
 	}
@@ -32,7 +32,7 @@ void Solution::Test()
 
 
 	start_clock = std::clock();
-	for (auto iter = x.begin(); iter != x.end(); ++iter){
+	for (auto iter = x.begin(); iter != x.end(); ++iter) {
 		++(*iter);
 		b += (*iter);
 	}
@@ -41,7 +41,7 @@ void Solution::Test()
 
 
 	start_clock = std::clock();
-	std::for_each(x.begin(), x.end(), std::bind(&func, std::placeholders::_1,b));
+	std::for_each(x.begin(), x.end(), std::bind(&func, std::placeholders::_1, b));
 	end_clock = std::clock();
 	std::cout << " for_each(bind) " << end_clock - start_clock << '\n';
 
@@ -54,7 +54,7 @@ void Solution::Test()
 	});
 	end_clock = std::clock();
 	std::cout << " for_each(lambda) " << end_clock - start_clock << '\n';
-	
+
 	system("PAUSE");
 
 }
