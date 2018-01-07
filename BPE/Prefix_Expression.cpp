@@ -1,4 +1,3 @@
-
 #include <vector>
 #include <string>
 #include <stack>
@@ -12,14 +11,14 @@ using namespace std;
 
 bool is_symble(const string & input);
 string cal(const string & left, const string & right, const string & oper);
-string prefix(const vector<string> & input);
+string prefix_expression(const vector<string> & input);
 string pop(stack<string> & target);
 
 int main() {
 	
 	const char * input = 
 		"- * + 23 % 45 10 6 / 77 12\n"
-		"+ *234 56\n"
+		"+ * 234 56\n"
 		".\n";
 	istringstream input_stream(input);
 	
@@ -27,6 +26,7 @@ int main() {
 	string temp;
 	vector<vector<string>> inputData;
 	
+	// change "input_stream" to "cin" when upload
 	while ( getline(input_stream, temp)) {
 		if (temp == ".") break;
 		// spilt string to several part
@@ -38,7 +38,7 @@ int main() {
 
 	// start calculate each input line
 	for (int i = 0; i < inputData.size(); ++i) {
-		string ans = prefix(inputData[i]);
+		string ans = prefix_expression(inputData[i]);
 		cout << ans;
 		if (i < inputData.size() - 1) cout << '\n';
 	}
@@ -55,7 +55,6 @@ bool is_symble(const string & input) {
 }
 
 string cal(const string & left, const string & right, const string & oper) {
-
 	int output;
 
 	if (oper == "+") output = stoi(left) + stoi(right);
@@ -63,19 +62,21 @@ string cal(const string & left, const string & right, const string & oper) {
 	if (oper == "*") output = stoi(left) * stoi(right);
 	if (oper == "/") output = stoi(left) / stoi(right);
 	if (oper == "%") output = stoi(left) % stoi(right);
-	
 
 	return to_string(output);
 }
 
 
-string prefix(const vector<string> & input) {
+string prefix_expression(const vector<string> & input) {
+
+	// init left
 	stack<string> left;
 	stack<string> right;
 	for (int i = 0; i < input.size(); ++i) {
 		left.push(input[i]);
 	}
 
+	// doing the answer
 	while (!(left.empty() && right.empty()))
 	{
 		if (left.empty()) 
@@ -112,8 +113,7 @@ string prefix(const vector<string> & input) {
 			}
 		}
 	}
-
-
+	return "illegal";
 }
 
 string pop(stack<string> & target) {
