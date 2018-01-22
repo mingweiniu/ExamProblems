@@ -24,7 +24,6 @@ void turn(const std::string & input, T & output)
 template<class T>
 void turn(const T & input, std::string & output )
 {
-
 	std::ostringstream oss;
 	oss << input;
 	output = oss.str();
@@ -74,18 +73,18 @@ bool is_symble(const string & input) {
 
 string cal(const string & left_in, const string & right_in, const string & oper) {
 
-	int res, left, right;
+	int left, right;
 	turn(left_in, left);
 	turn(right_in, right);
 
-	if (oper == "+") res = left + right;
-	if (oper == "-") res = left - right;
-	if (oper == "*") res = left * right;
-	if (oper == "/") res = left / right;
-	if (oper == "%") res = left % right;
+	if (oper == "+") left += right;
+	if (oper == "-") left -= right;
+	if (oper == "*") left *= right;
+	if (oper == "/") left /= right;
+	if (oper == "%") left %= right;
 
 	string output;
-	turn(res, output);
+	turn(left, output);
 
 	return output;
 }
@@ -96,7 +95,7 @@ string prefix_expression(const vector<string> & input) {
 	// init left
 	stack<string> left;
 	stack<string> right;
-	for (int i = 0; i < input.size(); ++i) {
+	for (int i = 0; i < static_cast<int>(input.size()); ++i) {
 		left.push(input[i]);
 	}
 
@@ -145,4 +144,3 @@ string pop(stack<string> & target) {
 	target.pop();
 	return output;
 }
-
