@@ -14,20 +14,36 @@ string cal(const string & left, const string & right, const string & oper);
 string prefix_expression(const vector<string> & input);
 string pop(stack<string> & target);
 
+
+template<class T>
+void turn(const std::string & input, T & output)
+{
+	std::istringstream(input) >> output;
+}
+
+template<class T>
+void turn(const T & input, std::string & output )
+{
+
+	std::ostringstream oss;
+	oss << input;
+	output = oss.str();
+}
+
 int main() {
-	
-	const char * input = 
+
+	const char * input =
 		"- * + 23 % 45 10 6 / 77 12\n"
 		"+ * 234 56\n"
 		".\n";
 	istringstream input_stream(input);
-	
+
 
 	string temp;
-	vector<vector<string>> inputData;
-	
+	vector<vector<string> > inputData;
+
 	// change "input_stream" to "cin" when upload
-	while ( getline(input_stream, temp)) {
+	while (getline(cin, temp)) {
 		if (temp == ".") break;
 		// spilt string to several part
 		istringstream cutter(temp);
@@ -37,11 +53,13 @@ int main() {
 	}
 
 	// start calculate each input line
-	for (int i = 0; i < inputData.size(); ++i) {
+	for (int i = 0; i < static_cast<int>(inputData.size()); ++i) {
 		string ans = prefix_expression(inputData[i]);
-		cout << ans;
-		if (i < inputData.size() - 1) cout << '\n';
+		cout << ans << "\n";
+		//if (i < inputData.size() - 1) cout << '\n';
 	}
+	
+	//auto x = 3;
 
 }
 
@@ -54,16 +72,22 @@ bool is_symble(const string & input) {
 	return false;
 }
 
-string cal(const string & left, const string & right, const string & oper) {
-	int output;
+string cal(const string & left_in, const string & right_in, const string & oper) {
 
-	if (oper == "+") output = stoi(left) + stoi(right);
-	if (oper == "-") output = stoi(left) - stoi(right);
-	if (oper == "*") output = stoi(left) * stoi(right);
-	if (oper == "/") output = stoi(left) / stoi(right);
-	if (oper == "%") output = stoi(left) % stoi(right);
+	int res, left, right;
+	turn(left_in, left);
+	turn(right_in, right);
 
-	return to_string(output);
+	if (oper == "+") res = left + right;
+	if (oper == "-") res = left - right;
+	if (oper == "*") res = left * right;
+	if (oper == "/") res = left / right;
+	if (oper == "%") res = left % right;
+
+	string output;
+	turn(res, output);
+
+	return output;
 }
 
 
@@ -79,7 +103,7 @@ string prefix_expression(const vector<string> & input) {
 	// doing the answer
 	while (!(left.empty() && right.empty()))
 	{
-		if (left.empty()) 
+		if (left.empty())
 		{
 			if (right.size() == 1) {
 				return right.top();
@@ -106,7 +130,7 @@ string prefix_expression(const vector<string> & input) {
 					return "illegal";
 				}
 			}
-			else 
+			else
 			{
 				//cout << z << "is not symble\n";
 				right.push(z);
@@ -121,3 +145,4 @@ string pop(stack<string> & target) {
 	target.pop();
 	return output;
 }
+
