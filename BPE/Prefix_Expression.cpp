@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include <cmath>
 
 #include <vector>
 #include <string>
@@ -7,14 +8,7 @@
 #include <sstream>
 #include <iterator>
 
-
 using namespace std;
-
-bool IsSymble(const string & input);
-string Calculator(const string & left, const string & right, const string & oper);
-string CalPrefixExpression(const vector<string> & input);
-string PopStack(stack<string> & target);
-
 
 template<class T>
 void Convert(const string & input, T & output)
@@ -38,11 +32,17 @@ vector<string> SpiltStringStream(const string &input)
 }
 
 
+bool IsSymble(const string & input);
+string Calculator(const string & left, const string & right, const string & oper);
+string CalPrefixExpression(const vector<string> & input);
+string PopStack(stack<string> & target);
+
 int main() {
 
 	istringstream test_stream(
 		"- * + 23 % 45 10 6 / 77 12\n"
 		"+ * 234 56\n"
+		// "." terminate
 		".\n");
 
 
@@ -55,9 +55,8 @@ int main() {
 		inputData.push_back(SpiltStringStream(one_line));
 	}
 
-	// start calculate each input line
-	int data_set_num = static_cast<int>(inputData.size());
 
+	int data_set_num = static_cast<int>(inputData.size());
 	for (int i = 0; i < data_set_num; ++i) {
 		cout << CalPrefixExpression(inputData[i]);
 		if (i < data_set_num - 1)
@@ -117,8 +116,9 @@ string CalPrefixExpression(const vector<string> & input) {
 				return "illegal";
 			}
 		}
-		else // left not empty
+		else 
 		{
+			// left not empty
 			string z = PopStack(left);
 
 			if (IsSymble(z))
@@ -129,8 +129,9 @@ string CalPrefixExpression(const vector<string> & input) {
 					string y = PopStack(right);
 					right.push(Calculator(x, y, z));
 				}
-				else // right has not enough 
+				else 
 				{
+					// right has not enough 
 					return "illegal";
 				}
 			}
