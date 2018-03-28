@@ -10,12 +10,14 @@
 
 using namespace std;
 
+// convert string to int, float ...
 template<class T>
 void Convert(const string & input, T & output)
 {
 	istringstream(input) >> output;
 }
 
+// convert a number to string
 template<class T>
 void Convert(const T & input, string & output)
 {
@@ -24,6 +26,7 @@ void Convert(const T & input, string & output)
 	output = oss.str();
 }
 
+// fast spilt with space
 vector<string> SpiltStringStream(const string &input)
 {
 	istringstream buffer(input);
@@ -39,6 +42,7 @@ string PopStack(stack<string> & target);
 
 int main() {
 
+	// test data without cin
 	istringstream test_stream(
 		"- * + 23 % 45 10 6 / 77 12\n"
 		"+ * 234 56\n"
