@@ -1,3 +1,5 @@
+#include <cstdlib>
+
 #include <vector>
 #include <string>
 #include <stack>
@@ -5,7 +7,6 @@
 #include <sstream>
 #include <iterator>
 
-#include <cstdlib>
 
 using namespace std;
 
@@ -16,50 +17,54 @@ string pop(stack<string> & target);
 
 
 template<class T>
-void turn(const std::string & input, T & output)
+void Convert(const string & input, T & output)
 {
-	std::istringstream(input) >> output;
+	istringstream(input) >> output;
 }
 
 template<class T>
-void turn(const T & input, std::string & output )
+void Convert(const T & input, string & output)
 {
-	std::ostringstream oss;
+	ostringstream oss;
 	oss << input;
 	output = oss.str();
 }
 
+vector<string> SpiltStringStream(const string &input) 
+{
+	istringstream buffer(input);
+	istream_iterator<string> begin(buffer), end;
+	return vector<string>(begin, end);
+}
+
+
 int main() {
 
-	const char * input =
+	istringstream test_stream(
 		"- * + 23 % 45 10 6 / 77 12\n"
 		"+ * 234 56\n"
-		".\n";
-	istringstream input_stream(input);
+		".\n");
 
 
-	string temp;
+	string one_line;
 	vector<vector<string> > inputData;
 
-	// change "input_stream" to "cin" when upload
-	while (getline(cin, temp)) {
-		if (temp == ".") break;
-		// spilt string to several part
-		istringstream cutter(temp);
-		istream_iterator<string> begin(cutter), end;
-		vector<string> test(begin, end);
-		inputData.push_back(test);
+	// change "test_stream" to "cin" when upload
+	while (getline(test_stream, one_line)) {
+		if (one_line == ".") break;
+		inputData.push_back(SpiltStringStream(one_line));
 	}
 
 	// start calculate each input line
-	for (int i = 0; i < static_cast<int>(inputData.size()); ++i) {
-		string ans = prefix_expression(inputData[i]);
-		cout << ans << "\n";
-		//if (i < inputData.size() - 1) cout << '\n';
-	}
-	
-	//auto x = 3;
+	int data_set_num = static_cast<int>(inputData.size());
 
+	for (int i = 0; i < data_set_num; ++i) {
+		cout << prefix_expression(inputData[i]);
+		if (i < data_set_num - 1)
+		{
+			cout << '\n';
+		}
+	}
 }
 
 bool is_symble(const string & input) {
@@ -74,8 +79,8 @@ bool is_symble(const string & input) {
 string cal(const string & left_in, const string & right_in, const string & oper) {
 
 	int left, right;
-	turn(left_in, left);
-	turn(right_in, right);
+	Convert(left_in, left);
+	Convert(right_in, right);
 
 	if (oper == "+") left += right;
 	if (oper == "-") left -= right;
@@ -84,7 +89,7 @@ string cal(const string & left_in, const string & right_in, const string & oper)
 	if (oper == "%") left %= right;
 
 	string output;
-	turn(left, output);
+	Convert(left, output);
 
 	return output;
 }
