@@ -10,10 +10,10 @@
 
 using namespace std;
 
-bool is_symble(const string & input);
-string cal(const string & left, const string & right, const string & oper);
-string prefix_expression(const vector<string> & input);
-string pop(stack<string> & target);
+bool IsSymble(const string & input);
+string Calculator(const string & left, const string & right, const string & oper);
+string CalPrefixExpression(const vector<string> & input);
+string PopStack(stack<string> & target);
 
 
 template<class T>
@@ -30,7 +30,7 @@ void Convert(const T & input, string & output)
 	output = oss.str();
 }
 
-vector<string> SpiltStringStream(const string &input) 
+vector<string> SpiltStringStream(const string &input)
 {
 	istringstream buffer(input);
 	istream_iterator<string> begin(buffer), end;
@@ -59,7 +59,7 @@ int main() {
 	int data_set_num = static_cast<int>(inputData.size());
 
 	for (int i = 0; i < data_set_num; ++i) {
-		cout << prefix_expression(inputData[i]);
+		cout << CalPrefixExpression(inputData[i]);
 		if (i < data_set_num - 1)
 		{
 			cout << '\n';
@@ -67,7 +67,7 @@ int main() {
 	}
 }
 
-bool is_symble(const string & input) {
+bool IsSymble(const string & input) {
 	if (input == "+") return true;
 	if (input == "-") return true;
 	if (input == "*") return true;
@@ -76,7 +76,7 @@ bool is_symble(const string & input) {
 	return false;
 }
 
-string cal(const string & left_in, const string & right_in, const string & oper) {
+string Calculator(const string & left_in, const string & right_in, const string & oper) {
 
 	int left, right;
 	Convert(left_in, left);
@@ -95,7 +95,7 @@ string cal(const string & left_in, const string & right_in, const string & oper)
 }
 
 
-string prefix_expression(const vector<string> & input) {
+string CalPrefixExpression(const vector<string> & input) {
 
 	// init left
 	stack<string> left;
@@ -119,15 +119,15 @@ string prefix_expression(const vector<string> & input) {
 		}
 		else // left not empty
 		{
-			string z = pop(left);
+			string z = PopStack(left);
 
-			if (is_symble(z))
+			if (IsSymble(z))
 			{
 				//cout << z << "is symble\n";
 				if (right.size() >= 2) {
-					string x = pop(right);
-					string y = pop(right);
-					right.push(cal(x, y, z));
+					string x = PopStack(right);
+					string y = PopStack(right);
+					right.push(Calculator(x, y, z));
 				}
 				else // right has not enough 
 				{
@@ -144,7 +144,7 @@ string prefix_expression(const vector<string> & input) {
 	return "illegal";
 }
 
-string pop(stack<string> & target) {
+string PopStack(stack<string> & target) {
 	string output = target.top();
 	target.pop();
 	return output;
