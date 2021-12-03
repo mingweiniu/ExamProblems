@@ -5,7 +5,7 @@
 #include <string>
 
 int main() {
-  unsigned long long horizontal = 0;
+	unsigned long long horizontal = 0;
 	unsigned long long depth = 0;
 	int aim = 0;
 
@@ -36,5 +36,5 @@ int main() {
 
 
 	std::cout << depth  * horizontal ;
-  return 0;
+	return 0;
 }
