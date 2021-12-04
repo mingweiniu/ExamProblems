@@ -27,12 +27,11 @@ class Table:
        
 
 
-
 input_lines = []
 with open('input.txt', 'r') as input_file:
     for line in input_file:
 	    # replace many space to one space
-	    input_lines.append(' '.join(line.split()))
+        input_lines.append(' '.join(line.split()))
 
 # data for each round
 play_rounds = [int(i) for i in input_lines[0].split(',')]
