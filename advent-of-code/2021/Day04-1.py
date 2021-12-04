@@ -12,7 +12,7 @@ class Table:
     def IfBingo(self, number):
         pose = np.where(self.table == number)
         self.record[pose] = 1
-        if( (self.record.sum(axis=0).tolist().count(5) > 0) | (self.record.sum(axis=1).tolist().count(5) > 0)):
+        if( (self.record.sum(axis=0).tolist().count(5) > 0) or (self.record.sum(axis=1).tolist().count(5) > 0)):
             return True
         else:
             return False
