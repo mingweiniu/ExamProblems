@@ -2,11 +2,10 @@ import numpy as np
 
 class Table:
     def __init__(self, square_matrix):
+        # convert strings to table
         table = square_matrix[1:]
         table = [[int(i) for i in line.split(' ')] for line in table]
-
         self.table = np.array(table)
-        self.row, self.col = self.table.shape
         self.record = np.zeros(self.table.shape, dtype=int)
         
     def IfBingo(self, number):
@@ -31,12 +30,12 @@ for line in lines_temp:
 	# replace many space to one space
 	Lines.append(' '.join(line.split()))
 
-
+# data for each round
 play_rounds = [int(i) for i in Lines[0].split(',')]
+Lines = Lines[1:]
 
 # create tables
 list_tables = []
-Lines = Lines[1:]
 while Lines:
     list_tables.append(Table(Lines[:6]))
     Lines = Lines[6:]
