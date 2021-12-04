@@ -26,7 +26,6 @@ class Table:
         return bingo_number * sum_matrix
        
 
-
 input_lines = []
 with open('input.txt', 'r') as input_file:
     for line in input_file:
@@ -63,12 +62,10 @@ print(str(list_bingo_table[-1].GetAnswer(bingo_numbers[-1])))
 list_bingo_table = []
 bingo_numbers = []
 for current_round in play_rounds:
-
     for table in list_tables:
         if not table.IfAlreadyBingo():
             if(table.IfBingo(current_round)):
                 list_bingo_table.append(table)
                 bingo_numbers.append(current_round)
-
 
 print(str(list_bingo_table[-1].GetAnswer(bingo_numbers[-1])))
