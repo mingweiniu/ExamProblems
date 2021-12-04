@@ -52,13 +52,12 @@ for current_round in play_rounds:
         break
 
     for table in list_tables:
-        if not table.IfAlreadyBingo():
-            if(table.IfBingo(current_round)):
-                list_bingo_table.append(table)
-                bingo_numbers.append(current_round)
-
+        if(table.IfBingo(current_round)):
+            list_bingo_table.append(table)
+            bingo_numbers.append(current_round)
 
 print(str(list_bingo_table[-1].GetAnswer(bingo_numbers[-1])))
+
 
 # play part2 game
 list_bingo_table = []
