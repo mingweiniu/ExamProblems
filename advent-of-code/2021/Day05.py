@@ -13,39 +13,37 @@ line_pairs = np.array(line_pairs)
 max_num = line_pairs.max() + 1
 terrain = np.zeros([max_num, max_num])
 
-for pair in line_pairs:
-    start_point, end_point = pair 
+def DrawLine(terrain, start_point, end_point, type):
+    vec = start_point - end_point    
+    steps = abs(vec[type])
+    if steps < 1:
+        pass
+    
+    ont_step = (end_point - start_point) // steps
+    for t in range(0, steps + 1):
+        target = start_point + t * ont_step
+        terrain[target[1]][target[0]] +=1
+        pass
 
+# part 1
+for start_point, end_point in line_pairs:
     if start_point[0] == end_point[0]:
-        a = start_point[1]
-        b = end_point[1]
-        for x in range(min(a, b), max(a, b) + 1):
-            terrain[x][start_point[0]] +=1  
-            
+        DrawLine(terrain, start_point, end_point, 1)            
 
     if start_point[1] == end_point[1]:
-        a = start_point[0]
-        b = end_point[0]
-        for y in range(min(a, b), max(a, b) + 1):
-            terrain[start_point[1]][y] +=1
+        DrawLine(terrain, start_point, end_point, 0)
+
     pass
 
 print((np.asarray(terrain) > 1).sum())
 
-
 # part 2
-for pair in line_pairs:
-    start_point, end_point = pair 
-    
+for start_point, end_point in line_pairs:    
     # base on part 1 is done
-    # only add diagonal line
+    # only add diagonal lines
     vec = start_point - end_point
     if abs(vec[0]) == abs(vec[1]):
-        steps = abs(vec[0])
-        ont_step = (end_point - start_point) // steps
-        for t in range(0, steps + 1):
-            target = start_point + t * ont_step
-            terrain[target[1]][target[0]] +=1
+        DrawLine(terrain, start_point, end_point, 0)
 
     pass
 
