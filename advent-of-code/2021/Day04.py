@@ -35,11 +35,8 @@ play_rounds = [int(i) for i in input_lines[0].split(',')]
 input_lines = input_lines[1:]
 
 # create tables
-list_tables = []
-while input_lines:
-    list_tables.append(GameTable(input_lines[1:6]))
-    input_lines = input_lines[6:]
-
+spilted_line_groups = [input_lines[i:i+6] for i in range(0, len(input_lines), 6)]
+list_tables = [GameTable(line_group[1:6]) for line_group in spilted_line_groups]
 
 # part1
 list_bingo_table = []
