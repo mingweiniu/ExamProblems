@@ -8,9 +8,6 @@ class GameTable:
         self.record = np.zeros(self.table.shape, dtype=int)
         self.already_bingo = False
 
-    def IfAlreadyBingo(self):
-        return self.already_bingo
-
     def IfBingo(self, number):
         pose = np.where(self.table == number)
         self.record[pose] = 1
@@ -60,11 +57,9 @@ print(str(list_bingo_table[-1].GetAnswer(bingo_numbers[-1])))
 
 
 # part2
-list_bingo_table = []
-bingo_numbers = []
 for current_round in play_rounds:
     for table in list_tables:
-        if not table.IfAlreadyBingo():
+        if not table.already_bingo:
             if(table.IfBingo(current_round)):
                 list_bingo_table.append(table)
                 bingo_numbers.append(current_round)
