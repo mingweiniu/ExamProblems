@@ -32,7 +32,7 @@ with open('input.txt', 'r') as input_file:
 play_rounds = [int(i) for i in input_lines[0].split(',')]
 
 # delete first line for matrix pattern
-input_lines = input_lines[1:]
+del input_lines[0]
 
 # create tables
 spilted_line_groups = [input_lines[i:i+6] for i in range(0, len(input_lines), 6)]
