@@ -1,10 +1,9 @@
 import numpy as np
 
-class Table:
+class GameTable:
     def __init__(self, square_matrix):
         # convert strings to table
-        table = square_matrix[1:]
-        table = [[int(i) for i in line.split(' ')] for line in table]
+        table = [[int(i) for i in line.split(' ')] for line in square_matrix]
         self.table = np.array(table)
         self.record = np.zeros(self.table.shape, dtype=int)
         self.already_bingo = False
@@ -20,8 +19,8 @@ class Table:
         return self.already_bingo
 
     def GetAnswer(self, bingo_number):
-        self.record = 1 - self.record
-        multiply = self.table * self.record
+        remained = 1 - self.record
+        multiply = self.table * remained
         sum_matrix = sum(sum(multiply))
         return bingo_number * sum_matrix
        
@@ -32,18 +31,20 @@ with open('input.txt', 'r') as input_file:
 	    # replace many space to one space
         input_lines.append(' '.join(line.split()))
 
-# data for each round
+# get data for each round
 play_rounds = [int(i) for i in input_lines[0].split(',')]
+
+# delete first line for matrix pattern
 input_lines = input_lines[1:]
 
 # create tables
 list_tables = []
 while input_lines:
-    list_tables.append(Table(input_lines[:6]))
+    list_tables.append(GameTable(input_lines[1:6]))
     input_lines = input_lines[6:]
 
 
-# play part1 game
+# part1
 list_bingo_table = []
 bingo_numbers = []
 for current_round in play_rounds:
@@ -58,7 +59,7 @@ for current_round in play_rounds:
 print(str(list_bingo_table[-1].GetAnswer(bingo_numbers[-1])))
 
 
-# play part2 game
+# part2
 list_bingo_table = []
 bingo_numbers = []
 for current_round in play_rounds:
