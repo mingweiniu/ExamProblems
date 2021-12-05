@@ -71,11 +71,13 @@ for b in reversed(range(12)):
             list_temp.append(i)
 
         if (not(i & mask)):
-            if (bits_1 > bits_0) or (bits_1 == bits_0):
+            if (bits_1 > bits_0) or (bits_1 > bits_0):
                 list_temp.append(i)
 
+        #special case
         if (bits_1 + bits_0) == 1:
             list_temp.append(i)
+
     list_current = list_temp
 
 CO2 = list_current[0]
