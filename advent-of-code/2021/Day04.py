@@ -20,7 +20,7 @@ class GameTable:
         multiply = self.table * remained
         sum_matrix = sum(sum(multiply))
         return bingo_number * sum_matrix
-       
+    pass
 
 input_lines = []
 with open('input.txt', 'r') as input_file:
@@ -36,29 +36,29 @@ del input_lines[0]
 
 # create tables
 spilted_line_groups = [input_lines[i:i+6] for i in range(0, len(input_lines), 6)]
-list_tables = [GameTable(line_group[1:6]) for line_group in spilted_line_groups]
+game_tables = [GameTable(line_group[1:6]) for line_group in spilted_line_groups]
 
 # part1
-list_bingo_table = []
+bingo_tables = []
 bingo_numbers = []
 for current_round in play_rounds:
-    if list_bingo_table:
+    if bingo_tables:
         break
 
-    for table in list_tables:
+    for table in game_tables:
         if(table.IfBingo(current_round)):
-            list_bingo_table.append(table)
+            bingo_tables.append(table)
             bingo_numbers.append(current_round)
 
-print(str(list_bingo_table[-1].GetAnswer(bingo_numbers[-1])))
+print(str(bingo_tables[-1].GetAnswer(bingo_numbers[-1])))
 
 
 # part2
 for current_round in play_rounds:
-    for table in list_tables:
+    for table in game_tables:
         if not table.already_bingo:
             if(table.IfBingo(current_round)):
-                list_bingo_table.append(table)
+                bingo_tables.append(table)
                 bingo_numbers.append(current_round)
 
-print(str(list_bingo_table[-1].GetAnswer(bingo_numbers[-1])))
+print(str(bingo_tables[-1].GetAnswer(bingo_numbers[-1])))
