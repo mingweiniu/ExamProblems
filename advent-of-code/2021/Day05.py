@@ -23,7 +23,7 @@ def DrawLine(terrain, start_point, end_point, type):
     for t in range(0, steps + 1):
         target = start_point + t * ont_step
         terrain[target[1]][target[0]] +=1
-        pass
+    pass
 
 # part 1
 for start_point, end_point in line_pairs:
