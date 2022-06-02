@@ -1,35 +1,26 @@
-// 1769. Minimum Number of Operations to Move All Balls to Each Box    
+// 7. Reverse Integer
 
-// https://leetcode.com/problems/minimum-number-of-operations-to-move-all-balls-to-each-box/discuss/1075669/C%2B%2B-O(N)-keep-track-of-of-balls-to-the-right-and-left
 
 class Solution {
 public:
-    vector<int> minOperations(string boxes) {
-        int N = boxes.size();  
-        vector<int> output(N);        
-                
-        int sum = 0;
-        int right = 0;
-        int left = 0;
-        for (int i = 0; i < N; ++i) 
-        {
-            if (boxes[i] == '1') 
-            {
-                sum += i;
-                ++right;
-            }
-        }
+    int reverse(int x) {
+		long long output = 0;
         
-        for (int i = 0; i < N; ++i) 
-        {
-            output[i] = sum;
-            if (boxes[i] == '1') 
-            {
-                --right;
-                    ++left;
-            }
-            sum += left - right;
-        }
-        return output;
+        // special case return
+        if(x == std::numeric_limits<int>::min()) return 0;
+
+		while (x)
+		{
+			output = 10 * output + x % 10;
+			x /= 10;
+		}
+
+		// larger then int max return
+        if (output > std::numeric_limits<int>::max()) return 0;
+
+        // overflow return 
+		if (output < 0) return 0;
+
+		return output;
     }
 };
