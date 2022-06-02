@@ -1,4 +1,4 @@
 git pull
 git add .
-git -m "auto upoload"
+git commit -m "auto upoload"
 git push
